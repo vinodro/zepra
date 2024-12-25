@@ -60,9 +60,13 @@ async function convertToYMCK(
     } else {
       console.log("Image saved successfully");
       sendToPrinter("path_to_your_images.png")
+      sendToPrinters()
     }
   });
 
+
+  sendToPrinter("path_to_your_images.png")
+  // sendToPrinters() seems like zpl needed the java runtime environment
   // await image.writeAsync(outputImage);
 }
 
@@ -98,6 +102,38 @@ function sendToPrinter(
     console.error("Printer error:", err);
   });
 }
+
+// const net = require('net');
+// const fs = require('fs');
+const imageToZpl = require('image-to-zpl'); // Library to convert image to ZPL
+
+function sendToPrinters(imagePath= "path_to_your_images.png", printerIP = "192.168.0.100", printerPort = 9100) {
+    const client = new net.Socket();
+    
+    // Read the image
+    // const imageData = fs.readFileSync(imagePath);
+
+    // Convert the image to ZPL format
+    imageToZpl(imagePath).then(zplCode => {
+        // Connect to the printer
+        client.connect(printerPort, printerIP, () => {
+            console.log('Connected to printer');
+            
+            // Send ZPL code to the printer
+            client.write(zplCode);
+            client.end();
+        });
+
+        client.on('error', (err) => {
+            console.error('Printer error:', err);
+        });
+    }).catch(err => {
+        console.error('Error converting image to ZPL:', err);
+    });
+}
+
+// Example usage
+// sendToPrinter('path/to/your/image.png', '192.168.1.100');
 
 // Example usage
 // const imagePath = "path_to_your_image.png";
