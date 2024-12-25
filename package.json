@@ -1,0 +1,19 @@
+{
+  "name": "zepraa",
+  "version": "1.0.0",
+  "description": "print for zepra zc300",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jimp": "^1.6.0",
+    "net": "^1.0.2",
+    "sharp": "^0.33.5"
+  }
+}
