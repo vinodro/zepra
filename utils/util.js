@@ -249,12 +249,12 @@ async function generateIDCard(backgroundPath, textPosition, textContent, outputP
 }
 
 // Call the Function
-generateIDCard(
-    './idcardtry.png',          // Path to background image
-    { x: 50, y: 100 }  ,          // Text position
-    'John Doe\nID: 1234567890',  // Text content
-    '',                  // Output directory
-);
+// generateIDCard(
+//     './idcardtry.png',          // Path to background image
+//     { x: 50, y: 100 }  ,          // Text position
+//     'John Doe\nID: 1234567890',  // Text content
+//     '',                  // Output directory
+// );
 
 
 module.exports={
